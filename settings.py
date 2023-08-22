@@ -5,6 +5,7 @@ ALLOWED_CHARACTERS = ascii_letters + digits
 CUSTOM_ID_PATTERN = r'^[A-Za-z0-9]+$'
 STATIC_DIR = os.path.abspath('./html')
 TEMPLATE_DIR = os.path.join(STATIC_DIR, 'templates')
+MAX_SYMBOLS = 16
 
 
 class Config(object):

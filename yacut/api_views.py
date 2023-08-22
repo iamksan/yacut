@@ -5,6 +5,7 @@ from . import app, db
 from .models import URLMap
 from .utils import get_unique_short_id, correct_short
 from .error_handlers import InvalidAPIUsage
+from settings import MAX_SYMBOLS
 
 
 @app.route('/api/id/', methods=['POST'])
@@ -15,7 +16,7 @@ def add_link():
     elif 'url' not in data:
         raise InvalidAPIUsage('"url" является обязательным полем!')
     if data.get('custom_id'):
-        if len(data['custom_id']) > 16 or not correct_short(data['custom_id']):
+        if len(data['custom_id']) > MAX_SYMBOLS or not correct_short(data['custom_id']):
             raise InvalidAPIUsage('Указано недопустимое имя для короткой ссылки')
         elif URLMap.query.filter_by(short=data['custom_id']).first() is not None:
             raise InvalidAPIUsage(f'Имя "{data["custom_id"]}" уже занято.')
