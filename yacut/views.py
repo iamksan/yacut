@@ -30,7 +30,6 @@ def index_view():
     return render_template('main.html', form=form, link=link)
 
 
-
 @app.route('/<path:link>')
 def redirect_view(link):
     link = URLMap.query.filter_by(short=link).first_or_404()
